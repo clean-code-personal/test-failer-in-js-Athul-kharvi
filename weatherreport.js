@@ -1,4 +1,4 @@
-const {expect} = require('chai');
+const { expect } = require('chai');
 
 // This is a stub for a weather sensor. For the sake of testing
 // we create a stub that generates weather data and allows us to
@@ -10,7 +10,7 @@ const weatherSensorStub = {
     precipitation: () => 70,
     temperatureInC: () => 26,
     windspeedInKmph: () => 52,
-}
+};
 
 
 function report(sensor) {
@@ -18,18 +18,18 @@ function report(sensor) {
     let reportOut = 'Sunny day';
     if (sensor.temperatureInC() > 25) {
         if (precipitation > 20 && precipitation < 60) {
-            reportOut = 'Partly cloudy'
+            reportOut = 'Partly cloudy';
         } else if (sensor.windspeedInKmph() > 50) {
             reportOut = 'Alert: Stormy with heavy rain';
         }
     }
-    return reportOut
+    return reportOut;
 }
 
 // Test a rainy day
 function testRainy() {
-    const weatherReport = report(weatherSensorStub)
-    console.log(weatherReport)
+    const weatherReport = report(weatherSensorStub);
+    console.log(weatherReport);
     expect(weatherReport).includes('rain');
 }
 
@@ -37,13 +37,20 @@ function testRainy() {
 function testHighPrecipitationAndLowWindspeed() {
     // This instance of stub needs to be different-
     // to give high precipitation (>60) and low wind-speed (<50)
-    weatherReport = report(weatherSensorStub)
+    const customStub = {
+        humidity: () => 60,
+        precipitation: () => 75, // High precipitation (>60)
+        temperatureInC: () => 26, // High temperature (>25)
+        windspeedInKmph: () => 45, // Low wind-speed (<50)
+    };
+
+    const weatherReport = report(customStub);
+    console.log(weatherReport);
     // strengthen the assert to expose the bug
     // (function returns Sunny day, it should predict rain)
-    expect(weatherReport).is.not.empty;
+    expect(weatherReport).to.include('rain');
 }
 
 testRainy();
 testHighPrecipitationAndLowWindspeed();
 console.log('All is well (maybe)');
-
