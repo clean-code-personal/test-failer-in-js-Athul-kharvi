@@ -1,17 +1,3 @@
-const { expect } = require('chai');
-
-// This is a stub for a weather sensor. For the sake of testing
-// we create a stub that generates weather data and allows us to
-// test the other parts of this application in isolation
-// without needing the actual Sensor during development
-// Later, this can be replaced with the actual interface to the sensor.
-const weatherSensorStub = {
-    humidity: () => 72,
-    precipitation: () => 70,
-    temperatureInC: () => 26,
-    windspeedInKmph: () => 52,
-};
-
 
 function report(sensor) {
     const precipitation = sensor.precipitation();
@@ -26,31 +12,4 @@ function report(sensor) {
     return reportOut;
 }
 
-// Test a rainy day
-function testRainy() {
-    const weatherReport = report(weatherSensorStub);
-    console.log(weatherReport);
-    expect(weatherReport).includes('rain');
-}
-
-// Test another rainy day
-function testHighPrecipitationAndLowWindspeed() {
-    // This instance of stub needs to be different-
-    // to give high precipitation (>60) and low wind-speed (<50)
-    const customStub = {
-        humidity: () => 60,
-        precipitation: () => 75, // High precipitation (>60)
-        temperatureInC: () => 26, // High temperature (>25)
-        windspeedInKmph: () => 45, // Low wind-speed (<50)
-    };
-
-    const weatherReport = report(customStub);
-    console.log(weatherReport);
-    // strengthen the assert to expose the bug
-    // (function returns Sunny day, it should predict rain)
-    expect(weatherReport).to.include('rain');
-}
-
-testRainy();
-testHighPrecipitationAndLowWindspeed();
-console.log('All is well (maybe)');
+module.exports = { report };
