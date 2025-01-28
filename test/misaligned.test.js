@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { print_color_map } = require('../misaligned');
+const { print_color_map } = require('../src/misaligned');
 
 describe('print_color_map', () => {
     it('should generate 25 color pairs', () => {
