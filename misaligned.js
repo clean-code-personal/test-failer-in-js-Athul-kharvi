@@ -1,3 +1,5 @@
+const { expect } = require('chai');
+
 function print_color_map() {
     const majorColors = ["White", "Red", "Black", "Yellow", "Violet"];
     const minorColors = ["Blue", "Orange", "Green", "Brown", "Slate"];
