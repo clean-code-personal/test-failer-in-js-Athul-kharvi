@@ -1,3 +1,4 @@
+const { expect } = require('chai');
 
 function report(sensor) {
     const precipitation = sensor.precipitation();
