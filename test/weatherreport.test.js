@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { report } = require('../weatherreport');
+const { report } = require('../src/weatherreport');
 
 // Test for rainy weather
 describe('Weather Report Tests', function () {
