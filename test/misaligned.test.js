@@ -14,6 +14,6 @@ describe('print_color_map', () => {
 
     it('should have correct last entry', () => {
         const result = print_color_map();
-        expect(result[24]).to.equal("25  | Violet    | Slate");
+        expect(result[24]).to.equal("25  | Violet     | Slate");
     });
 });
