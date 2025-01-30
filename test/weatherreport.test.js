@@ -16,6 +16,8 @@ describe('Weather Report Tests', function () {
         expect(weatherReport).to.include('rain');
     });
 
+    
+
     it('should detect partly cloudy weather for moderate precipitation', function () {
         const customStub = {
             humidity: () => 60,
@@ -53,5 +55,19 @@ describe('Weather Report Tests', function () {
         const weatherReport = report(customStub);
         console.log(weatherReport);
         expect(weatherReport).to.equal('Alert: Stormy with heavy rain');
+    });
+
+
+   
+    it('should detect rain in the report when there is high precipitation and low wind', function () {
+        const RainyDayStub = {
+            temperatureInC: () => 28,
+            precipitation: () => 70, // High precipitation
+            windspeedInKmph: () => 40, // Low wind speed
+        };
+
+        const weatherReport = report(RainyDayStub);
+        console.log(weatherReport);
+        expect(weatherReport).to.equal('Alert: rainny day');
     });
 });
