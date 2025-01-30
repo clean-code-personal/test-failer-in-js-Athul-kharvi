@@ -68,6 +68,6 @@ describe('Weather Report Tests', function () {
 
         const weatherReport = report(RainyDayStub);
         console.log(weatherReport);
-        expect(weatherReport).to.equal('Alert: rainny day');
+        expect(weatherReport).to.equal('Alert: rainy day');
     });
 });
